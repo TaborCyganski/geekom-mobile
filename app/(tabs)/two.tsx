@@ -3,13 +3,9 @@ import { Text, View } from '@/components/Themed';
 import UserComponent from '@/components/UserComponent';
 
 
-const imgsrc: any = require("../../assets/images/favicon.png");
-
 export default function TabTwoScreen() {
   return (
     <View style={styles.container}>
-      <UserComponent image={imgsrc} name='roman dmowski' lastSeen='today 12:12'/>
-    
     </View>
   );
 }
