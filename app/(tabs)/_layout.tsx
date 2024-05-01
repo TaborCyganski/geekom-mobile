@@ -17,7 +17,7 @@ export default function TabLayout() {
         tabBarActiveBackgroundColor : "blue", // add themed colors
       }}>
       <Tabs.Screen
-        name="chats"
+        name="index"
         options={{
           title: 'chats',
           tabBarShowLabel: false,

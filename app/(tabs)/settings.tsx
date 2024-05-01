@@ -1,12 +1,13 @@
 import { StyleSheet } from 'react-native';
 import { Text, View } from '@/components/Themed';
 import UserComponent from '@/components/UserComponent';
+import LoginScreen from '../LoginScreen';
 
 
 export default function SettingsScreen() {
   return (
     <View style={styles.container}>
-      <Text>tu bedzie settings</Text>
+      <Text>settings page</Text>
     </View>
   );
 }
