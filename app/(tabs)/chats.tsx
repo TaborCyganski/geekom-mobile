@@ -3,7 +3,7 @@ import { Text, View } from '@/components/Themed';
 import { UserListProps } from '@/constants/types';
 import UserSearch from '@/components/UserSearch';
 
-export default function TabOneScreen() {
+export default function ChatsScreen() {
   return (
     <View style={styles.container}>
       <UserSearch />    
