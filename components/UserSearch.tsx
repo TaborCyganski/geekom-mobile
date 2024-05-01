@@ -19,10 +19,9 @@ const data: UserListProps[] = [
     { imgsrc: img, name: "William Moore", lastseen: "Yesterday 19:17" },
   ];
   
-
 const UserSearch: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState<string>('');
-  const [searchResults, setSearchResults] = useState<UserListProps[]>([]);
+  const [searchResults, setSearchResults] = useState<UserListProps[]>(data);
 
   const handleSearch = (query: string) => {
     const filteredResults = data.filter(user =>

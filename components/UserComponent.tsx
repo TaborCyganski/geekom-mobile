@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
         marginTop: 30,
         flexDirection: "row",
         height: 90,
-        width: 400,      
+        width: 320,      
         textAlign: "center",
         alignItems: "center",
         backgroundColor: "#dddddd",
