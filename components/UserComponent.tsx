@@ -1,5 +1,6 @@
 import { View, StyleSheet, Image } from "react-native";
 import { MonoTextH1, MonoTextH3 } from "./StyledText";
+import { Link } from "expo-router";
 
 type UserProps = {
     name: string;
@@ -8,7 +9,9 @@ type UserProps = {
 }
 
 const UserComponent = (props: UserProps) => {
+
     return (
+        <Link style={styles.link} href={"/UserChat"}>
         <View style={styles.container} >
             <View style={styles.image}>
             <Image
@@ -20,13 +23,16 @@ const UserComponent = (props: UserProps) => {
                 <MonoTextH3>{props.lastSeen}</MonoTextH3>
             </View>      
         </View>
+        </Link>
     );
 }
 export default UserComponent;
 
 const styles = StyleSheet.create({
-    container: {
+    link: {
         marginTop: 30,
+    },
+    container: {
         flexDirection: "row",
         height: 90,
         width: 320,      

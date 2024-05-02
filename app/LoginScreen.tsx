@@ -17,7 +17,7 @@ export default function LoginScreen({ onChildValueChange }: ChildProps) {
   })
 
   const handleChange = () => {
-    if(input1 == "admin" && input2 == "admin") setStatus(true);
+    if(input1 == "" && input2 == "") setStatus(true);
     else setStatus(false);
   }
   
