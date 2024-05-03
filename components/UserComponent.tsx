@@ -1,17 +1,25 @@
 import { View, StyleSheet, Image } from "react-native";
 import { MonoTextH1, MonoTextH3 } from "./StyledText";
 import { Link } from "expo-router";
+import { UserStore } from "@/app/UserStore";
 
 type UserProps = {
     name: string;
     lastSeen: string;
     image: any,
+    xd: boolean
 }
 
 const UserComponent = (props: UserProps) => {
 
+    const handlePress = () => {
+        UserStore.update((s) => {
+            s.userProps = props;
+        })
+    }
+
     return (
-        <Link style={styles.link} href={"/UserChat"}>
+        <Link style={styles.link} href={"/UserChat"} onPress={handlePress}>
         <View style={styles.container} >
             <View style={styles.image}>
             <Image

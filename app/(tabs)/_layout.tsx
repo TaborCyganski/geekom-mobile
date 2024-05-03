@@ -7,11 +7,26 @@ import Colors from '@/constants/Colors';
 import { useColorScheme } from '@/components/useColorScheme';
 import { useClientOnlyValue } from '@/components/useClientOnlyValue';
 import { Ionicons } from '@expo/vector-icons';
+import { UserStore } from '../UserStore';
+import { useState, useEffect } from 'react';
+import LoginScreen from '../LoginScreen';
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
 
+  const [isLogged, setIsLogged] = useState<boolean>(false);
+
+  const handleLoginStatus = (status: boolean) => {
+    UserStore.update((s) => {s.isLogged = status})
+    setIsLogged(status);
+  }
+  console.log(isLogged)
+  useEffect(() => {
+
+  }, [isLogged])
+
   return (
+    isLogged ?
     <Tabs
       screenOptions={{
         tabBarActiveBackgroundColor : "blue", // add themed colors
@@ -33,5 +48,7 @@ export default function TabLayout() {
         }}
       />
     </Tabs>
+    : 
+    <LoginScreen onChildValueChange={handleLoginStatus}/>
   );
 }

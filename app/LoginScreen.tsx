@@ -14,7 +14,7 @@ export default function LoginScreen({ onChildValueChange }: ChildProps) {
   
   useEffect(() => {
     onChildValueChange(status);
-  })
+  }, )
 
   const handleChange = () => {
     if(input1 == "" && input2 == "") setStatus(true);

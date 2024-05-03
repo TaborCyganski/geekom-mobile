@@ -2,7 +2,9 @@ import { View, StyleSheet, Image, FlatList, TextInput, TouchableHighlight, Touch
 import { MonoTextH1, MonoTextH3 } from "../components/StyledText";
 import { Link } from "expo-router";
 import { ChatMessage } from "@/components/ChatMessage";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { UserStore } from "./UserStore";
+
 type UserProps = {
     name: string;
     lastSeen: string;
@@ -14,28 +16,45 @@ type message = {
     sentDate: string,
     received: boolean
 }
-const img = require('../assets/images/favicon.png');
-const UserChat = (props: UserProps) => {
-    
+
+
+
+const UserChat = () => {
+    const info: UserProps = UserStore.useState((s) => s.userProps);    
     const [messages, setMessages] = useState<message[]>([{content: 'siema cr???', sentDate: "today 15:15", received: true},{content: 'odpisz dziwkoos', sentDate: "today 15:21", received: true}]);
     const [current, setCurrent] = useState<message>();
-    
+    const [xd, setXd] = useState<boolean>(false);
+    const [user, setUser] = useState<UserProps>();
+
+    useEffect(() => {
+        setUser(info);
+    })
+
     const handleSending = () => {
-        if(current) {
+        if(current?.content) {
             setMessages(value => [...value,current]);
             setCurrent({content: '', sentDate: '', received: false});
         }
-    }   
+    }
+
+    const handleInput = (text: string) => {
+        setCurrent({content: text, received: false, sentDate: 'today: 16:23'});
+    }
+
+
     
+       
+
+    //FIX: naprawic wysylanie pustych wiadomosci
     return (
         <View style={styles.container} >
             <View style={styles.info}>
                 <Image
-                    source={img}
+                    source={user?.image}
                 />
                 <View>
-                    <MonoTextH1>John Cena</MonoTextH1>
-                    <MonoTextH3>today 12:12</MonoTextH3>
+                    <MonoTextH1>{user?.name}</MonoTextH1>
+                    <MonoTextH3>{user?.lastSeen}</MonoTextH3>
                 </View>
             </View>
             <View style={styles.chat}>
@@ -43,13 +62,12 @@ const UserChat = (props: UserProps) => {
                 data={messages}
                 keyExtractor={(item, index) => index.toString()}
                 renderItem={({ item }) => (
-                    
                     item.received == true ? <View style={styles.receivedMessage}><ChatMessage content={item.content} sentDate={item.sentDate}/></View> : <View style={styles.sentMessage}><ChatMessage content={item.content} sentDate={item.sentDate}/></View>
         )}
       />   
             </View>
             <View style={styles.send}>
-                <TextInput value={current?.content} onChangeText={(text: string) => {setCurrent({content: text, sentDate: 'today 16:00', received: false})}} defaultValue="wyslij"/>
+                <TextInput value={current?.content} onChangeText={(text: string) => handleInput(text)}/>
                 <TouchableOpacity onPress={handleSending} style={styles.xd}></TouchableOpacity>        
             </View>          
         </View>
